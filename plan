@@ -1,0 +1,5 @@
+click dice icon
+    > roll based on dice clicked
+        > add dice with id and value to dice array in app state
+        + render dice in dice list onto tray div
+        
