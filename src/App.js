@@ -11,7 +11,7 @@ class App extends React.Component {
     diceArray: [],
     idCounter: 0,
     totalRoll: null,
-  }
+  };
 
   render() { 
     return (
@@ -23,7 +23,7 @@ class App extends React.Component {
       </div>
     </div>
     );
-  }
+  };
 
   rollDice(sides) {
     let roll = Math.floor(Math.random() * sides) + 1;
@@ -44,14 +44,12 @@ class App extends React.Component {
     rerolledArray.forEach(dice => {
       let roll = Math.floor(Math.random() * dice.sides) + 1;
       dice.value = roll;
-    })
-
+    });
     this.setState({
       diceArray: rerolledArray
-    })
-
+    });
     this.sumRoll(rerolledArray);
-  }
+  };
 
   sumRoll(diceArray) {
     let total = 0;
