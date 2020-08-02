@@ -25,6 +25,9 @@ export default function DiceMenu(props) {
                 <button onClick={() => props.rollDice(4)}>
                     D4
                 </button>
+                <button onClick={() => props.reRoll(props.diceArray)}>
+                    Reroll
+                </button>
             </div>
       </div>
     )

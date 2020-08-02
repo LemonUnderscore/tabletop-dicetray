@@ -18,7 +18,7 @@ class App extends React.Component {
     <div className="mainScreen">
       <DiceTray diceArray={ this.state.diceArray } deleteDice={ this.deleteDice.bind(this) }/>
       <div className="menu">
-        <DiceMenu rollDice={ this.rollDice.bind(this) }/>
+        <DiceMenu rollDice={ this.rollDice.bind(this) } reRoll={ this.reRoll.bind(this) } diceArray={ this.state.diceArray }/>
         <TotalCounter totalRoll={ this.state.totalRoll }/>
       </div>
     </div>
@@ -38,6 +38,20 @@ class App extends React.Component {
     });
     this.sumRoll(this.state.diceArray.concat(newDice));
   };
+
+  reRoll(diceArray) {
+    const rerolledArray = diceArray
+    rerolledArray.forEach(dice => {
+      let roll = Math.floor(Math.random() * dice.sides) + 1;
+      dice.value = roll;
+    })
+
+    this.setState({
+      diceArray: rerolledArray
+    })
+
+    this.sumRoll(rerolledArray);
+  }
 
   sumRoll(diceArray) {
     let total = 0;
