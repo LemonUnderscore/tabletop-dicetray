@@ -8,8 +8,7 @@ export default function DiceTray(props) {
             { props.diceArray.map((dice) =>
             <button className="dice" key={dice.id} onClick={ () => props.deleteDice(dice.id) }>
                 <Dice sides={dice.sides} value={dice.value}/>
-            </button>
-            )}
+            </button>)}
             </div>
         </div>
     )

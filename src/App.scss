@@ -57,7 +57,10 @@
     }
 
     .totalCounter {
-        display: flex;
+        display: grid;
+        place-items: center;
+        font-size: 300%;
+        font-weight: bold;
     }
 }
 

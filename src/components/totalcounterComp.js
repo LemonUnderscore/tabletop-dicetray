@@ -1,10 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { useSpring, animated } from 'react-spring';
 
 export default function TotalCounter(props) {
-    return (
-        <div className="totalCounter">
-          <h1>Total</h1>
-          <h1>{ props.totalRoll }</h1>
-        </div>
-    )
+
+  const value = useSpring({ config: { duration: 250 }, number: props.totalRoll, from: { number: 0 }} );
+
+  return (
+    <animated.div className="totalCounter">
+      {value.number.interpolate(number => Math.floor(number))}
+    </animated.div>
+  );
 }

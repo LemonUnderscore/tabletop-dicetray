@@ -10,16 +10,26 @@ class App extends React.Component {
   state = {
     diceArray: [],
     idCounter: 0,
-    totalRoll: null,
+    totalRoll: 0,
   };
 
   render() { 
     return (
     <div className="mainScreen">
-      <DiceTray diceArray={ this.state.diceArray } deleteDice={ this.deleteDice.bind(this) }/>
+      <DiceTray
+      diceArray={ this.state.diceArray }
+      deleteDice={ this.deleteDice.bind(this) }
+      />
       <div className="menu">
-        <DiceMenu rollDice={ this.rollDice.bind(this) } reRoll={ this.reRoll.bind(this) } diceArray={ this.state.diceArray }/>
-        <TotalCounter totalRoll={ this.state.totalRoll }/>
+        <DiceMenu
+        rollDice={ this.rollDice.bind(this) }
+        reRoll={ this.reRoll.bind(this) }
+        clearTray={ this.clearTray.bind(this) }
+        diceArray={ this.state.diceArray }
+        />
+        <TotalCounter
+        totalRoll={ this.state.totalRoll }
+        />
       </div>
     </div>
     );
@@ -68,6 +78,14 @@ class App extends React.Component {
     });
     this.sumRoll(filteredArray);
   };
+
+  clearTray() {
+    this.setState({
+      diceArray: []
+    });
+
+    this.sumRoll([]);
+  }
 
 }
 
