@@ -3,8 +3,12 @@ import Dice from './diceComp';
 
 export default function DiceTray(props) {
     return (
-        <div>
-            { props.diceArray.map((dice) => <Dice sides={dice.sides} value={dice.value} key={dice.id} />) }
+        <div className="diceTray">
+            { props.diceArray.map((dice) =>
+            <button className="dice" key={dice.id} onClick={ () => props.deleteDice(dice.id) }>
+                <Dice sides={dice.sides} value={dice.value}/>
+            </button>
+            )}
         </div>
     )
 }

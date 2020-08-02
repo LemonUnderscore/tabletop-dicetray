@@ -1,17 +1,48 @@
-.diceMenu {
+.diceTray {
+    margin: 0;
+    width: 100%;
+    height: 90vh;
     background-color: green;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    .dice {
+        color: white;
+        border: none;
+        flex: 0 1 150px;
+        background-color: black;
+        margin: 25px;
+        height: 5rem;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.menu {
+    background-color: yellow;
     position: absolute;
     bottom: 0;
-    padding-bottom: 5%;
     width: 100%;
-    height: 5%;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: minmax(45%, 60%) 1fr;
+    height: 15vh;
 
-    button {
-        border: none;
-        width: 12.5%;
-        font-size: larger;
-    }
+    .diceMenu {
+        height: 100%;
+        background-color: rebeccapurple;
     
+        .buttonContainer {
+            display: flex;
+            justify-content: space-around;
+        
+            button {
+                border: none;
+                width: 5%;
+                font-size: larger;
+            }
+            
+        }
+    }
 }
+
