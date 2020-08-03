@@ -1,7 +1,7 @@
 .diceTray {
     margin: 0;
     width: 100%;
-    height: 85vh;
+    height: 100vh;
     background-color: green;
     display: grid;
     place-items: center;
@@ -19,48 +19,59 @@
             color: white;
             border: none;
             background-color: black;
-            margin: 25px;
-            width: 8rem;
+            margin: 2rem;
             height: 8rem;
-            display: grid;
-            place-items: center;
+            width: 8rem;
+            font-size: 200%;
+            font-weight: bold;
         }
     }
 }
 
-.menu {
-    background-color: yellow;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    display: grid;
-    grid-template-columns: minmax(45%, 75%) 1fr;
-    height: 15vh;
 
-    .diceMenu {
-        height: 100%;
-        background-color: rebeccapurple;
+
+.diceMenu {
+    background-color: rebeccapurple;
+    position: absolute;
+    bottom: 2%;
+    left: 2%;
+
+    .buttonContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
     
-        .buttonContainer {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
-        
-            button {
-                border: none;
-                font-size: larger;
-                flex: 0 1 10rem;
-                margin: 1rem;
-            }
-            
+        button {
+            border: none;
+            font-size: larger;
+            flex: 0 1 10rem;
+            margin: 1rem;
         }
+        
     }
+}
 
-    .totalCounter {
+.totalMenu {
+    background-color: yellow;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    right: 2%;
+    bottom: 2%;
+    font-size: 300%;
+    font-weight: bold;
+    width: 10%;
+
+    .totalResult {
+        background-color: red;
         display: grid;
         place-items: center;
-        font-size: 300%;
-        font-weight: bold;
+        font-size: 150%;
+    }
+
+    .totalSum {
+        display: inline-flex;
+        justify-content: center;
     }
 }
 

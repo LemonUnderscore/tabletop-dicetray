@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { useSpring, animated } from 'react-spring';
 
 export default function Dice(props) {
+    const animatedValue = useSpring({ config: { duration: 250 }, number: props.value, from: { number: 0 }} );
+
     return (
-        <div>
-            <h2>D{props.sides}: {props.value}</h2>
-        </div>
+        <animated.div>
+             {animatedValue.number.interpolate(number => Math.floor(number))}
+        </animated.div>
     )
 }

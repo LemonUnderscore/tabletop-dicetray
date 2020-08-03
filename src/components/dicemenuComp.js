@@ -1,6 +1,15 @@
 import React from 'react'
 
 export default function DiceMenu(props) {
+
+    const handleChange = (e) => {
+        const regex = /^0$|^-?[1-9]\d*(\.\d+)?$/;
+        if (e.target.value === "") {}
+        if (e.target.value !== "" && regex.test(e.target.value)) {
+            props.changeMod(e.target.value)
+        }
+    }
+
     return (
         <div className="diceMenu">
             <div className="buttonContainer">
@@ -31,6 +40,12 @@ export default function DiceMenu(props) {
                 <button onClick={() => props.clearTray()}>
                     Clear Tray
                 </button>
+                <input
+                type="number" 
+                placeholder={""}
+                onClick={(e) => e.target.select() }
+                onChange={ handleChange }
+                />
             </div>
       </div>
     )

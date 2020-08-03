@@ -11,26 +11,29 @@ class App extends React.Component {
     diceArray: [],
     idCounter: 0,
     totalRoll: 0,
+    modifier: 0,
   };
 
   render() { 
     return (
     <div className="mainScreen">
       <DiceTray
-      diceArray={ this.state.diceArray }
-      deleteDice={ this.deleteDice.bind(this) }
+        diceArray={ this.state.diceArray }
+        deleteDice={ this.deleteDice.bind(this) }
       />
-      <div className="menu">
-        <DiceMenu
+      <TotalCounter
+        totalCount={ this.state.totalRoll + this.state.modifier }
+        totalRoll= { this.state.totalRoll }
+        modifier={ this.state.modifier }
+      />
+      <DiceMenu
         rollDice={ this.rollDice.bind(this) }
         reRoll={ this.reRoll.bind(this) }
         clearTray={ this.clearTray.bind(this) }
+        changeMod={ this.changeMod.bind(this) }
+        modifier={ this.state.modifier }
         diceArray={ this.state.diceArray }
-        />
-        <TotalCounter
-        totalRoll={ this.state.totalRoll }
-        />
-      </div>
+      />
     </div>
     );
   };
@@ -72,7 +75,7 @@ class App extends React.Component {
   };
 
   deleteDice(removeID) {
-    const filteredArray = this.state.diceArray.filter(dice => dice.id !== removeID)
+    const filteredArray = this.state.diceArray.filter(dice => dice.id !== removeID);
     this.setState({
       diceArray: filteredArray
     });
@@ -83,8 +86,14 @@ class App extends React.Component {
     this.setState({
       diceArray: []
     });
-
     this.sumRoll([]);
+  }
+
+  changeMod(n) {
+    const mod = parseInt(n)
+    this.setState({
+      modifier: mod
+    })
   }
 
 }
