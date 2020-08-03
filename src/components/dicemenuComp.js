@@ -3,9 +3,12 @@ import React from 'react'
 export default function DiceMenu(props) {
 
     const handleChange = (e) => {
+        //regex for inegers
         const regex = /^0$|^-?[1-9]\d*(\.\d+)?$/;
-        if (e.target.value === "") {}
-        if (e.target.value !== "" && regex.test(e.target.value)) {
+        if (e.target.value === "") {
+            props.changeMod(0)
+        }
+        else if (e.target.value !== "" && regex.test(e.target.value)) {
             props.changeMod(e.target.value)
         }
     }
