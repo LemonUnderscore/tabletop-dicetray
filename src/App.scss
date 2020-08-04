@@ -1,12 +1,30 @@
+//theme
+$accentColour: #FFD33E;
+$menuHigh: #787878;
+$menuLow: #1B1E22;
+$menuBackground: #121417;
+$mainBackground: #0E1012;
+$diceTray: #076324;
+
+body, button, input {
+    font-family: Courier, monospace;
+    color: black;
+    font-weight: bold;
+}
+
+
 .diceTray {
-    margin: 0;
     width: 100%;
     height: 100vh;
-    background-color: green;
+    background-color: $diceTray;
     display: grid;
     place-items: center;
     overflow: scroll;
     overflow-x: hidden;
+    box-shadow: inset 0px 0px 80px -10px black;
+    position: absolute;
+    z-index: -2;
+
 
     .trayContainer {
         display: flex;
@@ -14,64 +32,142 @@
         justify-content: space-evenly;
         margin-left: 5%;
         margin-right: 5%;
+        padding-bottom: 10%;
 
         .dice {
-            color: white;
+            color: black;
             border: none;
-            background-color: black;
+            background-color: $accentColour;
             margin: 2rem;
             height: 8rem;
             width: 8rem;
             font-size: 200%;
-            font-weight: bold;
+            cursor: pointer;
         }
     }
 }
 
+.diceMenuToggle {
+    position: absolute;
+    bottom: 25px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: $menuBackground;
+    box-shadow: 0px 0px 50px -10px black;
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background .5s linear;
+    transition: color 0.5s linear;
+    color: $accentColour;
+}
 
+.open {
+    color: white;
+    transition: color 0.5s linear;
+    transition: background .5s linear;
+    background: $menuHigh;
+}
 
 .diceMenu {
-    background-color: rebeccapurple;
+    background: $menuLow;
+    box-shadow: 0px 0px 60px -10px black,
+                inset 0px 0px 60px -10px black;
+
     position: absolute;
-    bottom: 2%;
-    left: 2%;
+    left: 50px;
+    z-index: -1;
+
+    display: flex;
+    justify-content: center;
+
+    border-radius: 0 50px 50px 0;
+    height: 100px;
+
+    cursor: default;
+    transform-origin: left;
+
 
     .buttonContainer {
         display: flex;
-        flex-wrap: wrap;
+        align-items: center;
         justify-content: space-evenly;
-    
-        button {
-            border: none;
-            font-size: larger;
-            flex: 0 1 10rem;
-            margin: 1rem;
-        }
-        
+        width: 90%;
+    }
+
+    .menuButton {
+        cursor: pointer;
+        border: none;
+        min-width: 10%;
+        max-width: 25%;
+        height: 50%;
+        border-radius: 20px;
+        font-size: 1.5rem;
+    }
+
+}
+
+.modifierMenu {
+    position: absolute;
+    right: 15%;
+    bottom: 2%;
+    display: flex;
+    flex-direction: column;
+
+    input {
+        color: slategrey;
+        margin-left: 50px;
+        appearance: none;
+        font-size: 2rem;
+        border: none;
+        border-radius: 5px;
+        width: 150px;
+        min-width: 100px;
+        height: 50px;
+        text-align: center;
     }
 }
 
+
+
 .totalMenu {
-    background-color: yellow;
+    color: white;
+    background-color: $menuBackground;
     position: absolute;
     display: flex;
     flex-direction: column;
     right: 2%;
     bottom: 2%;
     font-size: 300%;
-    font-weight: bold;
-    width: 10%;
+    max-width: 15%;
+    min-width: 8%;
+    border-radius: 20px;
+    box-shadow: 0px 0px 40px -10px black;
+    
 
     .totalResult {
-        background-color: red;
+        background-color: $menuLow;
         display: grid;
         place-items: center;
         font-size: 150%;
+        border-radius: 20px;
+        box-shadow: inset 0px 0px 20px -10px black;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .totalSum {
-        display: inline-flex;
+        display: flex;
+        align-items: center;
         justify-content: center;
     }
 }
 
+.overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 1rem;
+}

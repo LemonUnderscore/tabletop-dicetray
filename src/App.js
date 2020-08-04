@@ -4,6 +4,7 @@ import './App.scss';
 import DiceMenu from './components/dicemenuComp';
 import DiceTray from './components/dicetrayComp';
 import TotalCounter from './components/totalcounterComp';
+import ModifierMenu from './components/modifiermenuComp';
 
 class App extends React.Component {
 
@@ -17,21 +18,24 @@ class App extends React.Component {
   render() { 
     return (
     <div className="mainScreen">
-      <DiceTray
-        diceArray={ this.state.diceArray }
-        deleteDice={ this.deleteDice.bind(this) }
+      <ModifierMenu
+      changeMod={ this.changeMod.bind(this) }
+      modifier={ this.state.modifier }
+      clearTray={ this.clearTray.bind(this) }
+      reRoll={ this.reRoll.bind(this) }
+      diceArray={ this.state.diceArray }
       />
       <TotalCounter
         totalCount={ this.state.totalRoll + this.state.modifier }
         totalRoll= { this.state.totalRoll }
         modifier={ this.state.modifier }
       />
+      <DiceTray
+        diceArray={ this.state.diceArray }
+        deleteDice={ this.deleteDice.bind(this) }
+      />
       <DiceMenu
         rollDice={ this.rollDice.bind(this) }
-        reRoll={ this.reRoll.bind(this) }
-        clearTray={ this.clearTray.bind(this) }
-        changeMod={ this.changeMod.bind(this) }
-        modifier={ this.state.modifier }
         diceArray={ this.state.diceArray }
       />
     </div>
