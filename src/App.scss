@@ -65,6 +65,10 @@ body, button, input {
     color: $accentColour;
 }
 
+.diceMenuToggle:hover {
+    color: white;
+}
+
 .open {
     color: white;
     transition: color 0.5s linear;
