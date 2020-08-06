@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.scss';
+import shortid from 'shortid';
 
 import DiceMenu from './components/dicemenuComp';
 import DiceTray from './components/dicetrayComp';
 import TotalCounter from './components/totalcounterComp';
-import ModifierMenu from './components/modifiermenuComp';
 
 class App extends React.Component {
 
@@ -18,13 +18,6 @@ class App extends React.Component {
   render() { 
     return (
     <div className="mainScreen">
-      <ModifierMenu
-      changeMod={ this.changeMod.bind(this) }
-      modifier={ this.state.modifier }
-      clearTray={ this.clearTray.bind(this) }
-      reRoll={ this.reRoll.bind(this) }
-      diceArray={ this.state.diceArray }
-      />
       <TotalCounter
         totalCount={ this.state.totalRoll + this.state.modifier }
         totalRoll= { this.state.totalRoll }
@@ -35,8 +28,12 @@ class App extends React.Component {
         deleteDice={ this.deleteDice.bind(this) }
       />
       <DiceMenu
+        changeMod={ this.changeMod.bind(this) }
+        clearTray={ this.clearTray.bind(this) }
+        reRoll={ this.reRoll.bind(this) }
         rollDice={ this.rollDice.bind(this) }
         diceArray={ this.state.diceArray }
+        modifier={ this.state.modifier }
       />
     </div>
     );
@@ -45,7 +42,7 @@ class App extends React.Component {
   rollDice(sides) {
     let roll = Math.floor(Math.random() * sides) + 1;
     const newDice = {
-      id: this.state.idCounter,
+      id: shortid.generate(),
       sides: sides,
       value: roll
     };
@@ -61,6 +58,7 @@ class App extends React.Component {
     rerolledArray.forEach(dice => {
       let roll = Math.floor(Math.random() * dice.sides) + 1;
       dice.value = roll;
+      dice.id = shortid.generate();
     });
     this.setState({
       diceArray: rerolledArray
@@ -88,7 +86,7 @@ class App extends React.Component {
 
   clearTray() {
     this.setState({
-      diceArray: []
+      diceArray: [],
     });
     this.sumRoll([]);
   }

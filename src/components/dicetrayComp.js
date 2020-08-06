@@ -1,25 +1,56 @@
 import React from 'react';
-import { useSpring, animated } from 'react-spring';
+import {ReactComponent as D20icon} from '../icons/dice-d20-solid.svg';
+import FlipMove from 'react-flip-move'
 
 export default function DiceTray(props) {
+
+    const getOffset = () => {
+        const offsets = [
+            " offset-1",
+            " offset-2",
+            " offset-3",
+            " offset-4"
+        ]
+        let s = "dice";
+        let randomOffset = offsets[Math.floor(Math.random() * offsets.length)];
+        return s.concat(randomOffset);
+    }
 
     return (
         <div className="diceTray">
             <div className="trayContainer">
-            { props.diceArray.map((dice) =>
-            <button className="dice" key={dice.id} onClick={ () => props.deleteDice(dice.id) }>
-                <Dice sides={dice.sides} value={dice.value}/>
-            </button>)}
+                <div>
+                    <FlipMove
+                    enterAnimation={"fade"}
+                    leaveAnimation={"none"}
+                        >
+                        { props.diceArray.map((dice) =>
+                            <button className={getOffset()} key={dice.id} onClick={ () => props.deleteDice(dice.id) }>
+                                <Dice sides={dice.sides} value={dice.value}/>
+                                {<D20icon className="d20icon"/>}
+                            </button>)}
+                    </FlipMove>
+                </div>
             </div>
         </div>
     )
 }
 
 function Dice(props) {
-    const animatedValue = useSpring({ config: { duration: 250 }, number: props.value, from: { number: 0 }} );
+
+    const isCrit = (n, sides) => {
+        if (n === sides) {
+            return "diceText maxRoll"
+        }
+        else if (n === 1) {
+            return "diceText minRoll"
+        }
+        else return "diceText"
+    }
+
     return (
-        <animated.div>
-             {animatedValue.number.interpolate(number => Math.floor(number))}
-        </animated.div>
+        <div className={isCrit(props.value, props.sides)}>
+            {props.value}
+        </div>
     )
 }

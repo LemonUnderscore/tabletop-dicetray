@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function modifiermenuComp(props) {
+export default function ModifierMenu(props) {
 
     const handleChange = (e) => {
         //regex for inegers
@@ -17,7 +17,7 @@ export default function modifiermenuComp(props) {
         <div className="modifierMenu">
             <input
                 inputMode="numeric"
-                placeholder={"Modifier"}
+                placeholder={"MOD"}
                 onClick={(e) => e.target.select() }
                 onChange={ handleChange }
             />

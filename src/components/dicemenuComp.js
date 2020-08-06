@@ -1,26 +1,8 @@
-import React, { useState } from 'react';
-import { Transition } from 'react-spring/renderprops';
+import React from 'react';
+import ModifierMenu from './modifiermenuComp';
+import { ReactComponent as D20icon } from '../icons/dice-d20-solid.svg';
 
 export default function DiceMenu(props) {
-    const [open, setOpen] = useState(false);
-    const rollDice = props.rollDice;
-
-    return (
-        <div className={open ? "diceMenuToggle open" : "diceMenuToggle"} onClick={ () => setOpen(!open) }>
-            <div className={open ? "rotate" : ""} >☰</div> 
-            <Transition
-            items={open}
-            from={{ width: "0vw", opacity: 0 }}
-            enter={{ width: "55vw", opacity: 1 }}
-            leave={{ width: "0vw", opacity: 0}}
-            >
-                {open => open && (props => <DiceDropDown open={open} style={props} rollDice={ rollDice }/> )}
-            </Transition>
-        </div>
-    )
-}
-
-function DiceDropDown(props) {
 
     function MenuItem(props) {
 
@@ -30,7 +12,7 @@ function DiceDropDown(props) {
         }
 
         return (
-            <button className="menuButton" onClick={ handleClick }>
+            <button className="menuButton circleButton" onClick={ handleClick }>
                 {props.children}
             </button>
         )
@@ -40,7 +22,7 @@ function DiceDropDown(props) {
         return (
             <div className="buttonContainer">
                 <MenuItem rollDice={ props.rollDice } sides={100}> D100 </MenuItem>
-                <MenuItem rollDice={ props.rollDice } sides={20}> D20 </MenuItem>
+                <MenuItem rollDice={ props.rollDice } sides={20}> <D20icon/> </MenuItem>
                 <MenuItem rollDice={ props.rollDice } sides={12}> D12 </MenuItem>
                 <MenuItem rollDice={ props.rollDice } sides={10}> D10 </MenuItem>
                 <MenuItem rollDice={ props.rollDice } sides={8}> D8 </MenuItem>
@@ -51,8 +33,20 @@ function DiceDropDown(props) {
     }
 
     return (
-        <div style={props.style} className="diceMenu">
-            <ButtonContainer rollDice={ props.rollDice } />
+        <div className="diceMenu">
+            <ButtonContainer
+            rollDice={ props.rollDice }
+            />
+            <ModifierMenu
+            changeMod={ props.changeMod }
+            modifier={ props.modifier }
+            clearTray={ props.clearTray }
+            reRoll={ props.reRoll }
+            diceArray={ props.diceArray }
+            />
+            <div className="helpMenu">
+                ?
+            </div>
         </div>
     )
 }
