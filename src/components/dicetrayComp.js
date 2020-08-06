@@ -1,10 +1,9 @@
 import React from 'react';
 import {ReactComponent as D20icon} from '../icons/dice-d20-solid.svg';
-import FlipMove from 'react-flip-move'
 
 export default function DiceTray(props) {
 
-    const getOffset = () => {
+    function getOffset() {
         const offsets = [
             " offset-1",
             " offset-2",
@@ -19,18 +18,11 @@ export default function DiceTray(props) {
     return (
         <div className="diceTray">
             <div className="trayContainer">
-                <div>
-                    <FlipMove
-                    enterAnimation={"fade"}
-                    leaveAnimation={"none"}
-                        >
-                        { props.diceArray.map((dice) =>
-                            <button className={getOffset()} key={dice.id} onClick={ () => props.deleteDice(dice.id) }>
-                                <Dice sides={dice.sides} value={dice.value}/>
-                                {<D20icon className="d20icon"/>}
-                            </button>)}
-                    </FlipMove>
-                </div>
+                { props.diceArray.map((dice) =>
+                    <button className={getOffset()} key={dice.id} onClick={ () => props.deleteDice(dice.id) }>
+                        <Dice sides={dice.sides} value={dice.value}/>
+                        {<D20icon className="d20icon"/>}
+                    </button>)}
             </div>
         </div>
     )

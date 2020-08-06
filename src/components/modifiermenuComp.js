@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function ModifierMenu(props) {
 
-    const handleChange = (e) => {
+    function handleChange(e) {
         //regex for inegers
         const regex = /^0$|^-?[1-9]\d*(\.\d+)?$/;
         if (e.target.value === "") {
