@@ -4,14 +4,8 @@ import ModifierMenu from './modifiermenuComp';
 export default function DiceMenu(props) {
 
     function MenuItem(props) {
-
-        const handleClick = (e) => {
-            e.stopPropagation();
-            props.rollDice(props.sides);
-        }
-
         return (
-            <button className={props.buttonName} onClick={ handleClick }>
+            <button className={props.buttonName} onClick={ () => props.rollDice(props.sides) }>
                 {props.children}
             </button>
         )
@@ -37,15 +31,15 @@ export default function DiceMenu(props) {
             rollDice={ props.rollDice }
             />
             <ModifierMenu
+            rollDice={ props.rollDice }
             changeMod={ props.changeMod }
+            changeCustom={ props.changeCustom }
             modifier={ props.modifier }
+            custom={ props.custom }
             clearTray={ props.clearTray }
             reRoll={ props.reRoll }
             diceArray={ props.diceArray }
             />
-            <div className="helpMenu">
-                ?
-            </div>
         </div>
     )
 }

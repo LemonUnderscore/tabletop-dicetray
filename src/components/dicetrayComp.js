@@ -26,37 +26,38 @@ function Dice(props) {
     function DiceContextMenu(props) {
         return (
             <div>
-                <button onClick={ () => props.deleteDice(props.id) }>
+                <button className="deleteButton" onClick={ () => props.deleteDice(props.id) }>
                     X
                 </button>
-                <button onClick= { () => props.reRollSingle(props.id)}>
+                <button className="rerollButton" onClick= { () => props.reRollSingle(props.id)}>
                     ⟳
                 </button>
             </div>
         )
     };
 
-    const isCrit = (n, sides) => {
+    function isMinMax(n, sides) {
         if (n === sides) {
-            return "diceText maxRoll"
+            return "diceBox maxRoll"
         }
         else if (n === 1) {
-            return "diceText minRoll"
+            return "diceBox minRoll"
         }
-        else return "diceText"
+        else return "diceBox"
     }
 
-    function getOffset() {
-        return Math.random() * (0.8 -0.25) + 0.25;
-    }
-
-    const randomDuration = {
-        animation: `roll ${getOffset()}s ease-in-out`
+    function getAnimation() {
+        let duration = Math.random() * (1 -0.25) + 0.25;
+        let direction = (Math.random() >= 0.5 ? "normal" : "reverse");
+        let animate = {
+            animation: `blur ${duration}s ease-in-out, roll ${duration}s ease-in-out ${direction}`
+        }
+        return animate;
     }
 
     return (
         <div
-        className="diceBox"
+        className={isMinMax(props.value, props.sides)}
         onMouseEnter={ () => setOpen(true) } 
         onMouseLeave={ () => setOpen(false) }
         >
@@ -65,9 +66,9 @@ function Dice(props) {
             </div>
             <div
             className="dice"
-            style={randomDuration}
+            style={getAnimation()}
             >
-                <div className={isCrit(props.value, props.sides)}>
+                <div className="diceText">
                     { props.value }
                 </div>
                 {<D20icon className="d20icon"/>}

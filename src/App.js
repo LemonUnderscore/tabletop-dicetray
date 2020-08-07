@@ -12,6 +12,7 @@ class App extends React.Component {
 		diceArray: [],
 		totalRoll: 0,
 		modifier: 0,
+		custom: 2,
 	};
 
 	render() { 
@@ -29,11 +30,13 @@ class App extends React.Component {
 			/>
 			<DiceMenu
 				changeMod={ this.changeMod.bind(this) }
+				changeCustom={ this.changeCustom.bind(this) }
 				clearTray={ this.clearTray.bind(this) }
 				reRoll={ this.reRoll.bind(this) }
 				rollDice={ this.rollDice.bind(this) }
 				diceArray={ this.state.diceArray }
 				modifier={ this.state.modifier }
+				custom={ this.state.custom }
 			/>
 		</div>
 		);
@@ -43,13 +46,11 @@ class App extends React.Component {
 		let roll = Math.floor(Math.random() * sides) + 1;
 		const newDice = {
 			id: shortid.generate(),
-			flipId: this.state.flipId,
 			sides: sides,
 			value: roll
 		};
 		this.setState({
 			diceArray: [...this.state.diceArray, newDice],
-			flipId: this.state.flipId + 1
 		});
 		this.sumRoll(this.state.diceArray.concat(newDice));
 	};
@@ -68,7 +69,7 @@ class App extends React.Component {
 	};
 
 	reRollSingle(rerollID) {
-		let newArray = this.state.diceArray
+		let newArray = this.state.diceArray;
 		newArray.forEach(dice => {
 			if (dice.id === rerollID) {
 				dice.value = Math.floor(Math.random() * dice.sides) + 1;
@@ -104,15 +105,21 @@ class App extends React.Component {
 			diceArray: [],
 		});
 		this.sumRoll([]);
-	}
+	};
 
 	changeMod(n) {
 		const mod = parseInt(n)
 		this.setState({
 			modifier: mod
 		})
-	}
+	};
 
+	changeCustom(n) {
+		const c = parseInt(n)
+		this.setState({
+			custom: c
+		})
+	}
 }
 
 export default App;
