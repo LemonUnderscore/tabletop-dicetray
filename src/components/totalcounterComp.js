@@ -10,16 +10,16 @@ export default function TotalCounter(props) {
   return (
     <div className="totalMenu">
       <div className="totalResult">
-        <animated.div className="overflow">
+        <animated.div>
           {animatedTotal.number.interpolate(number => Math.floor(number))}
         </animated.div>
       </div>
       <div className="totalSum">
-        <animated.div className="overflow">
+        <animated.div>
           {animatedRoll.number.interpolate(number => Math.floor(number))}
         </animated.div>
         <div>+</div>
-        <animated.div className="overflow">
+        <animated.div>
           {animatedMod.number.interpolate(number => Math.floor(number))}
         </animated.div>
       </div>

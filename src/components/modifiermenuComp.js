@@ -15,18 +15,18 @@ export default function ModifierMenu(props) {
 
     return (
         <div className="modifierMenu">
-            <input
-                inputMode="numeric"
-                placeholder={"MOD"}
-                onClick={(e) => e.target.select() }
-                onChange={ handleChange }
-            />
             <button onClick={() => props.reRoll(props.diceArray)}>
                     Reroll
             </button>
             <button onClick={() => props.clearTray()}>
                 Clear Tray
             </button>
+            <input
+                inputMode="numeric"
+                placeholder={"Modifier"}
+                onClick={(e) => e.target.select() }
+                onChange={ handleChange }
+            />
         </div>
     )
 }

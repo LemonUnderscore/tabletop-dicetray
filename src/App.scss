@@ -3,30 +3,49 @@ $accentColour: #FFD33E;
 $menuHigh: #787878;
 $menuLow: #1B1E22;
 $menuBackground: #121417;
-$mainBackground: #0E1012;
-$diceTray: #076324;
+$mainBackground: #333642;
+
+$button-colours: (
+        d100: #a972cb,
+        d20: #ef6eae, 
+        d12: #ff7f82, 
+        d10: #ffa260, 
+        d8: #e4cb58, 
+        d6: #8fc866, 
+        d4: #19bc8b
+    );
+
+
 
 html {
     scroll-behavior: smooth;
 }
 
 body, button, input {
-    color: white;
-    font-family: Courier, monospace;
+    color: w;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
+    
+}
+
+button,
+button:focus,
+button:active {
+	outline: none;
+	padding: 0;
 }
 
 .diceTray {
     width: 100%;
     height: 100vh;
-    background-color: $diceTray;
+    background-color: $mainBackground;
     overflow: scroll;
     overflow-x: hidden;
     box-shadow: inset 0px 0px 80px -10px black;
     position: absolute;
     display: grid;
     place-items: center;
-    z-index: -2;
+    z-index: -1;
 
 
     .trayContainer {
@@ -36,32 +55,33 @@ body, button, input {
         flex-wrap: wrap;
         justify-content: center;
 
-        .offset-1 {
-            animation: roll 0.4s ease-in-out;
+        .diceBox:hover {
+            .dice {
+                filter: drop-shadow(0px 0px 15px white);
+            }
         }
-        .offset-2 {
-            animation: roll 0.6s ease-in-out;
-        }
-        .offset-3 {
-            animation: roll 0.8s ease-in-out;
-        }
-        .offset-4 {
-            animation: roll 1s ease-in-out;
+
+        .diceContext {
+            position: absolute;
+            z-index: 1;
         }
 
         .dice {
             color: black;
             position: relative;
-            border: none;
-            background: none;
             height: 8rem;
             width: 8rem;
             margin: 1rem;
             cursor: pointer;
-            transition: filter .25s;
+            transform-origin: center;
+            will-change: transform;
+            transition: filter 0.2s linear, transform 0.2s linear;
 
             .diceText {
-                font-family: Arial, Helvetica, sans-serif;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -60%);
                 font-weight: bolder;
                 font-size: 1.2rem;
                 margin-top: 5%;
@@ -85,13 +105,7 @@ body, button, input {
                 color: white;
                 z-index: -1;
                 filter: drop-shadow(0px 0px 15px black);
-                
             }
-        }
-
-        .dice:hover {
-            filter: drop-shadow(0px 0px 15px white);
-            transform: scale(1.2);
         }
     }
 }
@@ -99,7 +113,7 @@ body, button, input {
 @keyframes roll {
     0% { transform: rotate(0deg) scale(1.5); filter: blur(5px); }
     
-    100% { transform: rotate(720deg) scale(1); filter: blur(0px); }
+    100% { transform: rotate(1080deg) scale(1); filter: blur(0px); }
 }
 
 .diceMenu {
@@ -110,50 +124,59 @@ body, button, input {
     position: fixed;
     width: 6rem;
     height: 100vh;
+    box-sizing: border-box;
 
     .buttonContainer {
+        background: yellow;
         height: 60vh;
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
+    }
+
+    @each $type, $colour in $button-colours {
+        .diceButton-#{$type} {
+            background: $colour;
+        }
     }
 
     button {
-        background: $menuHigh;
-        align-self: center;
-        cursor: pointer;
         border: none;
-        font-size: 1;
-        border-radius: 50%;
-        width: 4rem;
-        height: 4rem;
+        height: (100% / 7);
+        cursor: pointer;
+        font-size: 1.5rem;
+        transition: .25s;
+    }
+
+    button:hover,
+    button:focus {
+        filter: brightness(150%);
     }
 
     .modifierMenu {
-        height: 35vh;
+        height: 30vh;
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
-    
-        input {
-            background: $menuHigh;
-            align-self: center;
-            appearance: none;
-            border: none;
-            text-align: center;
-            width: 5rem;
-            height: 3rem;
-            border-radius: 5px;
-            font-size: 1rem;
-            text-overflow: ellipsis;
-        }
 
         button {
-            width: 5rem;
-            height: 5rem;
+            height: 33%;
+        }
+    
+        input {
+            color: whitesmoke;
+            background: $menuLow;
+            align-self: center;
+            border: none;
+            border-top: 5px solid $menuHigh;
+            border-bottom: 5px solid $menuHigh;
+            text-align: center;
+            width: 100%;
+            height: 33%;
+            font-size: 2rem;
+            text-overflow: ellipsis;
         }
     
         ::placeholder {
+            font-size: 1rem;
             color: white; 
         }
     }
@@ -161,18 +184,14 @@ body, button, input {
     .helpMenu {
         background-color: red;
         font-size: 2rem;
-        height: 5vh;
-        display: grid;
-        place-items: center;
+        height: 100%;
+        text-align: center;
     }
 
 }
 
-
-
-
-
 .totalMenu {
+    color: white;
     background-color: $menuBackground;
     position: absolute;
     display: flex;
@@ -202,10 +221,4 @@ body, button, input {
         align-items: center;
         justify-content: center;
     }
-}
-
-.overflow {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
 }

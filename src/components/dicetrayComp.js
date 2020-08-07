@@ -1,34 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {ReactComponent as D20icon} from '../icons/dice-d20-solid.svg';
 
 export default function DiceTray(props) {
 
-    function getOffset() {
-        const offsets = [
-            " offset-1",
-            " offset-2",
-            " offset-3",
-            " offset-4"
-        ]
-        let s = "dice";
-        let randomOffset = offsets[Math.floor(Math.random() * offsets.length)];
-        return s.concat(randomOffset);
-    }
-
     return (
         <div className="diceTray">
             <div className="trayContainer">
+
                 { props.diceArray.map((dice) =>
-                    <button className={getOffset()} key={dice.id} onClick={ () => props.deleteDice(dice.id) }>
-                        <Dice sides={dice.sides} value={dice.value}/>
-                        {<D20icon className="d20icon"/>}
-                    </button>)}
+                    
+                    <div key={dice.id}>
+                        <Dice id={dice.id} deleteDice={ props.deleteDice } reRollSingle={ props.reRollSingle } sides={dice.sides} value={dice.value}/>
+                    </div>
+                    
+                    )}
             </div>
         </div>
     )
 }
 
 function Dice(props) {
+
+    const [contextOpen, setOpen] = useState(false);
+
+    function DiceContextMenu(props) {
+        return (
+            <div>
+                <button onClick={ () => props.deleteDice(props.id) }>
+                    X
+                </button>
+                <button onClick= { () => props.reRollSingle(props.id)}>
+                    ⟳
+                </button>
+            </div>
+        )
+    };
 
     const isCrit = (n, sides) => {
         if (n === sides) {
@@ -40,9 +46,32 @@ function Dice(props) {
         else return "diceText"
     }
 
+    function getOffset() {
+        return Math.random() * (0.8 -0.25) + 0.25;
+    }
+
+    const randomDuration = {
+        animation: `roll ${getOffset()}s ease-in-out`
+    }
+
     return (
-        <div className={isCrit(props.value, props.sides)}>
-            {props.value}
+        <div
+        className="diceBox"
+        onMouseEnter={ () => setOpen(true) } 
+        onMouseLeave={ () => setOpen(false) }
+        >
+            <div className="diceContext">
+                { contextOpen && <DiceContextMenu id={props.id} reRollSingle={ props.reRollSingle } deleteDice={ props.deleteDice } /> }
+            </div>
+            <div
+            className="dice"
+            style={randomDuration}
+            >
+                <div className={isCrit(props.value, props.sides)}>
+                    { props.value }
+                </div>
+                {<D20icon className="d20icon"/>}
+            </div>
         </div>
     )
 }
