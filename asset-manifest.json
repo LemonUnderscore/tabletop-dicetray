@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/tabletop-dicetray/static/css/main.ad08370e.chunk.css",
+    "main.css": "/tabletop-dicetray/static/css/main.6b95d551.chunk.css",
     "main.js": "/tabletop-dicetray/static/js/main.2136d867.chunk.js",
     "main.js.map": "/tabletop-dicetray/static/js/main.2136d867.chunk.js.map",
     "runtime-main.js": "/tabletop-dicetray/static/js/runtime-main.712f1a59.js",
@@ -8,9 +8,9 @@
     "static/js/2.5cf3df1d.chunk.js": "/tabletop-dicetray/static/js/2.5cf3df1d.chunk.js",
     "static/js/2.5cf3df1d.chunk.js.map": "/tabletop-dicetray/static/js/2.5cf3df1d.chunk.js.map",
     "index.html": "/tabletop-dicetray/index.html",
-    "precache-manifest.ec076e37fa4e9e45aa64f57ca1fe8995.js": "/tabletop-dicetray/precache-manifest.ec076e37fa4e9e45aa64f57ca1fe8995.js",
+    "precache-manifest.82bb92c0d9f5fe0ca26764c653e0005a.js": "/tabletop-dicetray/precache-manifest.82bb92c0d9f5fe0ca26764c653e0005a.js",
     "service-worker.js": "/tabletop-dicetray/service-worker.js",
-    "static/css/main.ad08370e.chunk.css.map": "/tabletop-dicetray/static/css/main.ad08370e.chunk.css.map",
+    "static/css/main.6b95d551.chunk.css.map": "/tabletop-dicetray/static/css/main.6b95d551.chunk.css.map",
     "static/js/2.5cf3df1d.chunk.js.LICENSE.txt": "/tabletop-dicetray/static/js/2.5cf3df1d.chunk.js.LICENSE.txt",
     "static/media/d10icon.png": "/tabletop-dicetray/static/media/d10icon.74d1e987.png",
     "static/media/d12icon.png": "/tabletop-dicetray/static/media/d12icon.bbf157a8.png",
@@ -22,7 +22,7 @@
   "entrypoints": [
     "static/js/runtime-main.712f1a59.js",
     "static/js/2.5cf3df1d.chunk.js",
-    "static/css/main.ad08370e.chunk.css",
+    "static/css/main.6b95d551.chunk.css",
     "static/js/main.2136d867.chunk.js"
   ]
 }
