@@ -1,3 +1,5 @@
+https://lemonunderscore.github.io/tabletop-dicetray/
+
 ## A Simple React App for Rolling Dice
 Good for tabletop games.
 
